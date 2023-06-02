@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,100&display=swap');
+
+body {
+background-color: #DCDCDC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+a:hover{
+    transition: 0.7s;
+    color: black;
+    font-size: 2.5vh;
+}
+
+.logo img:hover {
+    transition: 1s;
+    height: 75px;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: white;
+    height: 8vh;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+.navlist {
+    list-style: none;
+    display: flex;
+}
+
+.navlist li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+.texto1 {
+    transition: 1s;
+    font-family: Poppins;
+    font-size: 3vh;
+    position: absolute;
+    top: 25vh;
+    left: 15vh;
+    color: gray;
+}
+
+.texto2 {
+    transition: 1s;
+    font-family: Poppins;
+    font-size: 5vh;
+    font-weight: bolder;
+    position: absolute;
+    top: 30vh;
+    left: 15vh;
+    animation: mover 5s infinite;
+    color:cornflowerblue;
+}
+
+@keyframes mover {
+    0% {
+      transform: translatey(0);
+    }
+    50% {
+      transform: translatey(10px);
+    }
+    100% {
+      transform: translatey(0);
+    }
+  }
+
+  .moldura {
+    width: 70vh;
+    height: 70vh;
+    border-radius: 10%;
+    overflow: hidden;
+    position: absolute;
+    top: 150px;
+    right: 300px;
+  }
+
+  .moldura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .texto3 {
+    transition: 1s;
+    font-family: poppins;
+    position: absolute;
+    top: 40vh;
+    left: 37vh;
+    color: gray;
+    width: 300px;
+    text-align: justify;
+  }
+
+  .ler-mais {
+    transition: 1s;
+    font-family: poppins;
+    display: inline-block;
+    position: absolute;
+    top: 55vh;
+    left: 57vh;
+    background-color: #808080;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .ler-mais:hover {
+    transition: 0.7s;
+    opacity: 0.7;
+  }
+
+.titulosobre {
+    transition: 1s;
+    font-family: Poppins;
+    font-size: 4vh;
+    color: #808080;
+    position: absolute;
+    top: 200px;
+    left: 45vw;
+    text-decoration: none;
+
+}
+
+.textosobre {
+    transition: 1s;
+    font-family: Poppins;
+    font-size: 3vh;
+    color: #808080;
+    position: absolute;
+    top: 300px;
+    left: 32.5vw;
+    text-decoration: none;
+    width: 700px;
+    text-align: justify;
+}
+  
