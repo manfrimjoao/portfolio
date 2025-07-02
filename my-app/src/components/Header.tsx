@@ -31,15 +31,26 @@ export default function Header() {
     { href: '#projects', key: 'projects' },
     { href: '#contact', key: 'contact' },
   ] as const;
+
+  const handleNavClick = (href: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setOpen(false);
+  };
+
   return (
     <header className="fixed w-full top-0 left-0 bg-header/90 backdrop-blur border-b border-border z-10 shadow-sm">
       <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
         <Link href="#home" className="font-bold text-lg text-foreground">
-          João
+         manfrimjoao.dev
         </Link>
         <nav className="hidden md:flex gap-4">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-primary">
+            <a key={l.href} href={l.href} className="hover:text-primary" onClick={handleNavClick(l.href)}>
               {text[lang][l.key]}
             </a>
           ))}
@@ -72,7 +83,7 @@ export default function Header() {
             aria-label="Toggle language"
             className="p-2 rounded hover:bg-surface text-xs font-semibold"
           >
-            {lang === 'en' ? 'PT' : 'EN'}
+            {lang === 'en' ? 'EN' : 'PT-BR'}
           </button>
           <button
             className="md:hidden bg-header rounded p-2 z-20 border border-border" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -94,7 +105,7 @@ export default function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={handleNavClick(l.href)}
                 className="block px-4 py-2 hover:bg-surface"
               >
                 {text[lang][l.key]}

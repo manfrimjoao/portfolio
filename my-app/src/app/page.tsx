@@ -198,6 +198,7 @@ export default function HomePage() {
               <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.teamwork}</li>
               <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.communication}</li>
               <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.problemSolving}</li>
+              <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.learning}</li>
             </ul>
           </div>
         </div>

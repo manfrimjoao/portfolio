@@ -10,14 +10,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div
         className="flex flex-col min-h-screen relative transition-[filter] duration-500"
         id="home"
-        style={{ filter: isLangTransitioning ? 'url(#ripple-effect) blur(6px)' : 'none' }}
+        style={{ filter: isLangTransitioning ? 'url(#ripple-effect) blur(20px)' : 'none' }}
       >
         {isLangTransitioning && (
           <svg className="absolute w-0 h-0">
             <filter id="ripple-effect">
-              <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="1" result="T" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="1" result="T" />
               <feDisplacementMap in="SourceGraphic" in2="T" scale="0">
-                <animate attributeName="scale" values="0;40;0" dur="0.6s" />
+                <animate attributeName="scale" values="100;400;100" dur="0.6s" />
               </feDisplacementMap>
             </filter>
           </svg>
