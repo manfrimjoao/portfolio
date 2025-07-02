@@ -1,14 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb; /* gray-50 */
-  --foreground: #111827; /* gray-900 */
+  /* Light mode palette */
+  --color1: #b2b39f;
+  --color2: #c8c9b5;
+  --color3: #dedfc5;
+  --color4: #f5f7bd;
+  --color5: #3d423c;
+
+  --background: var(--color4);
+  --foreground: var(--color5);
+  --header-bg: var(--color1);
+  --footer-bg: var(--color1);
+  --card-bg: var(--color2);
+  --button-bg: var(--color5);
+  --button-text: var(--color4);
+  --border: var(--color3);
   --transition: 0.3s ease;
 }
 
 .dark {
-  --background: #111827; /* gray-900 */
-  --foreground: #f9fafb; /* gray-50 */
+  /* Dark mode palette */
+  --color1: #567199;
+  --color2: #446188;
+  --color3: #325277;
+  --color4: #1f4266;
+  --color5: #0d3255;
+
+  --background: var(--color5);
+  --foreground: var(--color1);
+  --header-bg: var(--color3);
+  --footer-bg: var(--color3);
+  --card-bg: var(--color4);
+  --button-bg: var(--color1);
+  --button-text: var(--color5);
+  --border: var(--color2);
 }
 
 body {
@@ -16,8 +42,16 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
 }
 
 * {
   transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--foreground);
+  opacity: 0.6;
+  transition: color var(--transition);
 }

@@ -1,25 +1,33 @@
 'use client';
+import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useState } from 'react';
 import type { IconType } from 'react-icons';
 import {
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
+  FaGithub
 } from 'react-icons/fa';
 import {
   SiFramer,
+  SiMongodb,
+  SiMysql,
   SiNextdotjs,
   SiNodedotjs,
+  SiPython,
   SiReact,
+  SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
+import DownloadCVButton from '../components/DownloadCVButton';
+import { useTypewriter } from '../components/useTypewriter';
 import { useLang } from '../context/LangContext';
 import { text } from '../lib/text';
 
 export default function HomePage() {
   const { lang } = useLang();
   const t = text[lang];
+
+  const { text: heroTyped, cursorVisible } = useTypewriter({ text: t.hero });
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -62,7 +70,43 @@ export default function HomePage() {
     { name: 'React', icon: SiReact },
     { name: 'Node.js', icon: SiNodedotjs },
     { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Framer', icon: SiFramer },
+    { name: 'Tailwind', icon: SiTailwindcss },
+    { name: 'MongoDB', icon: SiMongodb },
+    { name: 'MySQL', icon: SiMysql },
+    { name: 'Python', icon: SiPython },
   ];
+
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    setSent(false);
+    setError('');
+    const form = e.currentTarget;
+    const formData = {
+      from_name: (form.elements.namedItem('name') as HTMLInputElement)?.value,
+      from_email: (form.elements.namedItem('email') as HTMLInputElement)?.value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value,
+    };
+    try {
+      await emailjs.send(
+        'portfolio_email',
+        'template_kzot2be',
+        formData,
+        'iiN0EGdIOoJsaNlwr'
+      );
+      setSent(true);
+      form.reset();
+    } catch (err) {
+      setError('Erro ao enviar. Tente novamente.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div>
@@ -76,21 +120,50 @@ export default function HomePage() {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-4xl font-bold mb-4">{t.hero}</h1>
-          <button
-            onClick={scrollToProjects}
-            className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded mt-4"
-          >
-            {t.viewProjects}
-          </button>
+          <h1 className="text-4xl font-bold mb-4 relative">
+            <span className="opacity-0 pointer-events-none absolute inset-0 select-none whitespace-nowrap">
+              {text.pt.hero.length > text.en.hero.length ? text.pt.hero : text.en.hero}
+            </span>
+            {heroTyped}
+            <span
+              className="inline-block w-[1ch] align-baseline animate-none"
+              style={{
+                opacity: cursorVisible ? 1 : 0,
+                transition: 'opacity 0.1s',
+                fontWeight: 'bold',
+                color: 'inherit',
+                fontSize: '1em',
+                userSelect: 'none',
+              }}
+            >
+              |
+            </span>
+          </h1>
+          <div className="flex gap-2 justify-center md:justify-start">
+            <button
+              onClick={scrollToProjects}
+              className="bg-primary text-primary-foreground px-4 py-2 rounded mt-4 font-semibold border border-border transition-all duration-300 hover:bg-primary-foreground hover:text-primary"
+            >
+              {t.viewProjects}
+            </button>
+            <div className="mt-4 font-semibold">
+              <DownloadCVButton className="border border-border transition-all duration-300 hover:bg-primary-foreground hover:text-primary" />
+            </div>
+          </div>
         </motion.div>
-        <Image
-          src="/profile.jpg"
-          alt="João Manfrim"
-          width={300}
-          height={300}
-          className="rounded-full"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+        >
+          <Image
+            src="/profile.jpg"
+            alt="João Manfrim"
+            width={300}
+            height={300}
+            className="rounded-full"
+          />
+        </motion.div>
       </section>
 
       {/* About Section */}
@@ -98,25 +171,35 @@ export default function HomePage() {
         id="about"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.8 }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
-        <h2 className="text-3xl font-bold mb-4">{t.aboutMe}</h2>
-        <p className="mb-4">{t.aboutParagraph}</p>
-        <h3 className="font-semibold mb-2">{t.softSkills}</h3>
-        <ul className="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
-          <li>{t.teamwork}</li>
-          <li>{t.communication}</li>
-          <li>{t.problemSolving}</li>
-        </ul>
-        <h3 className="font-semibold mb-2">{t.technologies}</h3>
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
-          {aboutTechs.map((t) => (
-            <div key={t.name} className="flex items-center gap-2">
-              <t.icon className="w-5 h-5 text-primary dark:text-primary-dark" />
-              <span className="text-sm">{t.name}</span>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t.aboutMe}</h2>
+        <p className="mb-8 text-lg text-foreground/80 max-w-3xl mx-auto text-center">{t.aboutParagraph}</p>
+        <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
+          {/* Card Tecnologias */}
+          <div className="flex-1 bg-surface border border-border rounded-2xl shadow-md p-6 flex flex-col items-center">
+            <h3 className="font-semibold mb-4 text-xl text-primary">{t.technologies}</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {aboutTechs.map((t) => (
+                <div
+                  key={t.name}
+                  className="flex items-center justify-center bg-background border border-border rounded-xl shadow-sm h-20 w-20 transition-colors"
+                >
+                  <t.icon className="w-10 h-10 text-primary" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          {/* Card Soft Skills */}
+          <div className="flex-1 bg-surface border border-border rounded-2xl shadow-md p-6 flex flex-col items-center">
+            <h3 className="font-semibold mb-4 text-xl text-primary">{t.softSkills}</h3>
+            <ul className="grid grid-cols-1 gap-2 w-full max-w-xs mx-auto">
+              <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.teamwork}</li>
+              <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.communication}</li>
+              <li className="bg-background border border-border rounded-lg px-4 py-2 text-center text-foreground/90 font-medium">{t.problemSolving}</li>
+            </ul>
+          </div>
         </div>
       </motion.section>
 
@@ -125,7 +208,7 @@ export default function HomePage() {
         id="projects"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.8 }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
         <h2 className="text-3xl font-bold mb-8">{t.projectsTitle}</h2>
@@ -137,7 +220,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 p-4 rounded shadow flex flex-col"
+              className="bg-surface p-4 rounded shadow flex flex-col border border-border"
             >
               <Image
                 src={p.img}
@@ -154,7 +237,7 @@ export default function HomePage() {
                   return (
                     <span
                       key={b}
-                      className="bg-gray-200 dark:bg-gray-700 px-2 py-1 text-xs rounded flex items-center gap-1"
+                      className="bg-header px-2 py-1 text-xs rounded flex items-center gap-1"
                     >
                       {Icon && <Icon className="w-4 h-4" />} {b}
                     </span>
@@ -163,7 +246,7 @@ export default function HomePage() {
               </div>
               <a
                 href={p.link}
-                className="text-primary dark:text-primary-dark text-sm hover:underline flex items-center gap-1"
+                className="flex items-center gap-2 border border-border rounded px-3 py-1 text-primary text-sm font-semibold transition-all hover:bg-primary-foreground hover:text-primary"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -179,49 +262,46 @@ export default function HomePage() {
         id="contact"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.8 }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
-        <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
-        <form className="grid gap-4 max-w-xl">
+        <h2 className="text-3xl font-bold mb-4 text-center">{t.contactTitle}</h2>
+        <form className="grid gap-4 max-w-xl mx-auto text-center" onSubmit={handleSendEmail}>
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            name="name"
+            className="border border-border bg-surface p-2 rounded text-foreground placeholder:text-foreground/60"
             type="text"
             placeholder={t.name}
             aria-label={t.name}
+            required
           />
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            name="email"
+            className="border border-border bg-surface p-2 rounded text-foreground placeholder:text-foreground/60"
             type="email"
             placeholder={t.email}
             aria-label={t.email}
+            required
           />
           <textarea
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            name="message"
+            className="border border-border bg-surface p-2 rounded text-foreground placeholder:text-foreground/60"
             rows={4}
             placeholder={t.message}
             aria-label={t.message}
+            required
           ></textarea>
           <button
             type="submit"
-            className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded border border-border transition-all duration-300 hover:bg-primary-foreground hover:text-primary font-semibold disabled:opacity-60"
+            disabled={sending}
           >
-            {t.send}
+            {sending ? 'Enviando...' : t.send}
           </button>
+          {sent && <p className="text-green-600 text-sm mt-2">Mensagem enviada com sucesso!</p>}
+          {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
         </form>
         <div className="mt-6 flex gap-4">
-          <a
-            href="mailto:jvmanfrim88@gmail.com"
-            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
-          >
-            <FaEnvelope className="w-4 h-4" /> {t.emailMe}
-          </a>
-          <a
-            href="https://linkedin.com/in/manfrimjoao"
-            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
-          >
-            <FaLinkedin className="w-4 h-4" /> LinkedIn
-          </a>
         </div>
       </motion.section>
     </div>
