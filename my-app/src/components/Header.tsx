@@ -9,7 +9,7 @@ import { text } from '../lib/text';
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const { lang, setLang, isLangTransitioning, triggerLangTransition } = useLang();
+  const { lang, setLang, triggerLangTransition } = useLang();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -66,7 +66,8 @@ export default function Header() {
           <button
             onClick={() => {
               triggerLangTransition();
-              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 200);
+              // Change the language when the animation is halfway through
+              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 300);
             }}
             aria-label="Toggle language"
             className="p-2 rounded hover:bg-surface text-xs font-semibold"

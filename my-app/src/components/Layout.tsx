@@ -1,13 +1,12 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LangProvider, useLang } from '../context/LangContext';
+import { useLang } from '../context/LangContext';
 import Footer from './Footer';
 import Header from './Header';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { isLangTransitioning } = useLang();
   return (
-    <LangProvider>
       <div className="flex flex-col min-h-screen relative" id="home">
         <Header />
         <main className="flex-1 pt-16">
@@ -15,14 +14,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {isLangTransitioning && (
               <motion.div
                 key="lang-transition"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="fixed inset-0 z-50"
+                initial={{ y: '-100%', backgroundPosition: '0% 0%' }}
+                animate={{ y: 0, backgroundPosition: '100% 0%' }}
+                exit={{ y: '100%' }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                className="fixed inset-0 z-50 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, var(--background), var(--foreground))',
-                  mixBlendMode: 'screen',
+                  backgroundImage: "url('/water.svg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'repeat-x',
                 }}
               />
             )}
@@ -33,6 +33,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </main>
         <Footer />
       </div>
-    </LangProvider>
   );
 }

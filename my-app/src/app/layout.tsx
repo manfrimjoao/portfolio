@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { LangProvider } from "@/context/LangContext";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased bg-background text-foreground">
-        <Layout>{children}</Layout>
+        <LangProvider>
+          <Layout>{children}</Layout>
+        </LangProvider>
       </body>
     </html>
   );
