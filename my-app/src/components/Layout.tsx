@@ -1,14 +1,27 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LangProvider, useLang } from '../context/LangContext';
+import { useLang } from '../context/LangContext';
 import Footer from './Footer';
 import Header from './Header';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { isLangTransitioning } = useLang();
   return (
-    <LangProvider>
-      <div className="flex flex-col min-h-screen relative" id="home">
+      <div
+        className="flex flex-col min-h-screen relative transition-[filter] duration-500"
+        id="home"
+        style={{ filter: isLangTransitioning ? 'url(#ripple-effect) blur(20px)' : 'none' }}
+      >
+        {isLangTransitioning && (
+          <svg className="absolute w-0 h-0">
+            <filter id="ripple-effect">
+              <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="1" result="T" />
+              <feDisplacementMap in="SourceGraphic" in2="T" scale="0">
+                <animate attributeName="scale" values="100;400;100" dur="0.6s" />
+              </feDisplacementMap>
+            </filter>
+          </svg>
+        )}
         <Header />
         <main className="flex-1 pt-16">
           <AnimatePresence>
@@ -18,12 +31,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="fixed inset-0 z-50"
-                style={{
-                  background: 'linear-gradient(90deg, var(--background), var(--foreground))',
-                  mixBlendMode: 'screen',
-                }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                className="fixed inset-0 z-50 pointer-events-none bg-background/40 backdrop-blur-sm"
               />
             )}
           </AnimatePresence>
@@ -33,6 +42,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </main>
         <Footer />
       </div>
-    </LangProvider>
   );
 }
