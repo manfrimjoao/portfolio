@@ -9,7 +9,7 @@ export default function Footer() {
     { href: 'mailto:jvmanfrim88@gmail.com', label: 'Email', icon: FaEnvelope },
   ];
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-6 mt-16">
+    <footer className="bg-amber-50 dark:bg-gray-900 border-t border-amber-200 dark:border-gray-700 py-6 mt-16">
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-2">
         <div className="flex gap-4">
           {socials.map((s) => (

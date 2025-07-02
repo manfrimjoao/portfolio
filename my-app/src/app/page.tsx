@@ -154,7 +154,7 @@ export default function HomePage() {
                   return (
                     <span
                       key={b}
-                      className="bg-gray-200 dark:bg-gray-700 px-2 py-1 text-xs rounded flex items-center gap-1"
+                      className="bg-amber-100 dark:bg-gray-700 px-2 py-1 text-xs rounded flex items-center gap-1"
                     >
                       {Icon && <Icon className="w-4 h-4" />} {b}
                     </span>
@@ -185,19 +185,19 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
         <form className="grid gap-4 max-w-xl">
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
             type="text"
             placeholder={t.name}
             aria-label={t.name}
           />
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
             type="email"
             placeholder={t.email}
             aria-label={t.email}
           />
           <textarea
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
             rows={4}
             placeholder={t.message}
             aria-label={t.message}

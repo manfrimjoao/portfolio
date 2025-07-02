@@ -31,7 +31,7 @@ export default function Header() {
     { href: '#contact', key: 'contact' },
   ] as const;
   return (
-    <header className="fixed w-full top-0 left-0 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-200 dark:border-gray-700 z-10 shadow-sm">
+    <header className="fixed w-full top-0 left-0 bg-amber-50/90 dark:bg-gray-900/90 backdrop-blur border-b border-amber-200 dark:border-gray-700 z-10 shadow-sm">
       <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
         <Link href="#home" className="font-bold text-lg text-gray-900 dark:text-gray-100">
           João
@@ -47,14 +47,14 @@ export default function Header() {
           <button
             onClick={toggleDark}
             aria-label="Toggle theme"
-            className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="p-2 rounded hover:bg-amber-100 dark:hover:bg-gray-700"
           >
             {dark ? '🌙' : '☀️'}
           </button>
           <button
             onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
             aria-label="Toggle language"
-            className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-xs font-semibold"
+            className="p-2 rounded hover:bg-amber-100 dark:hover:bg-gray-700 text-xs font-semibold"
           >
             {lang === 'en' ? 'PT' : 'EN'}
           </button>
@@ -72,7 +72,7 @@ export default function Header() {
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
             exit={{ height: 0 }}
-            className="md:hidden bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
+            className="md:hidden bg-amber-50 dark:bg-gray-900 border-t border-amber-200 dark:border-gray-700"
           >
             {links.map((l) => (
               <a

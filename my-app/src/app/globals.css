@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb; /* gray-50 */
-  --foreground: #111827; /* gray-900 */
+  /* Light theme uses a warmer palette */
+  --background: #fff7ed; /* amber-50 */
+  --foreground: #1f2937; /* gray-800 */
   --transition: 0.3s ease;
 }
 
