@@ -1,12 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   const socials = [
     { href: 'https://github.com/manfrimjoao', label: 'GitHub', icon: FaGithub },
-    { href: 'https://linkedin.com/in/manfrimjoao', label: 'LinkedIn', icon: FaLinkedin },
-    { href: 'mailto:jvmanfrim88@gmail.com', label: 'Email', icon: FaEnvelope },
+    { href: '', label: 'Instagram', icon: FaInstagram },
   ];
   return (
     <footer className="bg-footer border-t border-border py-6 mt-16">
@@ -24,7 +23,7 @@ export default function Footer() {
             </motion.a>
           ))}
         </div>
-        <p className="text-xs text-foreground">&copy; {new Date().getFullYear()} João Manfrim</p>
+        <p className="text-xs text-foreground">&copy; {new Date().getFullYear()} João Vitor Fernandes Manfrim</p>
       </div>
     </footer>
   );

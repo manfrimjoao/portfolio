@@ -2,13 +2,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { useLang } from '../context/LangContext';
 import { text } from '../lib/text';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const { lang, setLang } = useLang();
+  const { lang, setLang, isLangTransitioning, triggerLangTransition } = useLang();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -46,20 +47,34 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleDark}
-            aria-label="Toggle theme"
-            className="p-2 rounded hover:bg-surface"
+            aria-label="Alternar tema"
+            className={`w-12 h-6 flex items-center rounded-full px-1 transition-colors duration-300 focus:outline-none border border-border shadow-sm
+              ${dark ? 'bg-primary' : 'bg-header'}`}
           >
-            {dark ? '🌙' : '☀️'}
+            <span
+              className={`w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center border border-border
+                ${dark ? 'bg-header text-primary-foreground' : 'bg-primary text-primary-foreground'}
+                ${dark ? 'translate-x-6' : 'translate-x-0'}`}
+            >
+              {dark ? (
+                <FaMoon className="w-4 h-4 text-primary" />
+              ) : (
+                <FaSun className="w-4 h-4 text-yellow-400" />
+              )}
+            </span>
           </button>
           <button
-            onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
+            onClick={() => {
+              triggerLangTransition();
+              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 200);
+            }}
             aria-label="Toggle language"
             className="p-2 rounded hover:bg-surface text-xs font-semibold"
           >
             {lang === 'en' ? 'PT' : 'EN'}
           </button>
           <button
-            className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+            className="md:hidden bg-header rounded p-2 z-20 border border-border" onClick={() => setOpen(!open)} aria-label="Menu">
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground"></span>
