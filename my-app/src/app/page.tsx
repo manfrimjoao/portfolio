@@ -1,6 +1,19 @@
 'use client';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+} from 'react-icons/fa';
+import {
+  SiReact,
+  SiNodedotjs,
+  SiTypescript,
+  SiNextdotjs,
+  SiFramer,
+} from 'react-icons/si';
+import type { IconType } from 'react-icons';
 
 export default function HomePage() {
   const scrollToProjects = () => {
@@ -29,6 +42,21 @@ export default function HomePage() {
       link: 'https://github.com/manfrimjoao',
       badges: ['Next.js', 'Framer'],
     },
+  ];
+
+  const techIcons: Record<string, IconType> = {
+    React: SiReact,
+    Node: SiNodedotjs,
+    'Node.js': SiNodedotjs,
+    TypeScript: SiTypescript,
+    'Next.js': SiNextdotjs,
+    Framer: SiFramer,
+  };
+
+  const aboutTechs = [
+    { name: 'React', icon: SiReact },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'TypeScript', icon: SiTypescript },
   ];
 
   return (
@@ -75,15 +103,21 @@ export default function HomePage() {
           I&apos;m passionate about building full-stack applications using React and
           Node.js. Always learning and looking for new challenges.
         </p>
-        <h3 className="font-semibold mb-2">Soft Skills & Technologies</h3>
-        <ul className="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2">
+        <h3 className="font-semibold mb-2">Soft Skills</h3>
+        <ul className="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
           <li>Teamwork</li>
           <li>Communication</li>
           <li>Problem Solving</li>
-          <li>React</li>
-          <li>Node.js</li>
-          <li>TypeScript</li>
         </ul>
+        <h3 className="font-semibold mb-2">Technologies</h3>
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+          {aboutTechs.map((t) => (
+            <div key={t.name} className="flex items-center gap-2">
+              <t.icon className="w-5 h-5 text-primary dark:text-primary-dark" />
+              <span className="text-sm">{t.name}</span>
+            </div>
+          ))}
+        </div>
       </motion.section>
 
       {/* Projects Section */}
@@ -100,6 +134,9 @@ export default function HomePage() {
             <motion.div
               key={p.title}
               whileHover={{ scale: 1.05, boxShadow: '0px 10px 30px rgba(0,0,0,0.1)' }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               className="bg-white dark:bg-gray-800 p-4 rounded shadow flex flex-col"
             >
               <Image
@@ -112,19 +149,25 @@ export default function HomePage() {
               <h3 className="font-semibold mb-1">{p.title}</h3>
               <p className="text-sm mb-2 flex-1">{p.desc}</p>
               <div className="flex gap-2 mb-2 flex-wrap">
-                {p.badges.map((b) => (
-                  <span key={b} className="bg-gray-200 dark:bg-gray-700 px-2 py-1 text-xs rounded">
-                    {b}
-                  </span>
-                ))}
+                {p.badges.map((b) => {
+                  const Icon = techIcons[b];
+                  return (
+                    <span
+                      key={b}
+                      className="bg-gray-200 dark:bg-gray-700 px-2 py-1 text-xs rounded flex items-center gap-1"
+                    >
+                      {Icon && <Icon className="w-4 h-4" />} {b}
+                    </span>
+                  );
+                })}
               </div>
               <a
                 href={p.link}
-                className="text-primary dark:text-primary-dark text-sm hover:underline"
+                className="text-primary dark:text-primary-dark text-sm hover:underline flex items-center gap-1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View on GitHub
+                <FaGithub className="w-4 h-4" /> View on GitHub
               </a>
             </motion.div>
           ))}
@@ -167,11 +210,17 @@ export default function HomePage() {
           </button>
         </form>
         <div className="mt-6 flex gap-4">
-          <a href="mailto:jvmanfrim88@gmail.com" className="text-primary dark:text-primary-dark hover:underline">
-            Email Me
+          <a
+            href="mailto:jvmanfrim88@gmail.com"
+            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
+          >
+            <FaEnvelope className="w-4 h-4" /> Email Me
           </a>
-          <a href="https://linkedin.com/in/manfrimjoao" className="text-primary dark:text-primary-dark hover:underline">
-            LinkedIn
+          <a
+            href="https://linkedin.com/in/manfrimjoao"
+            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
+          >
+            <FaLinkedin className="w-4 h-4" /> LinkedIn
           </a>
         </div>
       </motion.section>
