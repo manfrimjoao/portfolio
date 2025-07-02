@@ -1,0 +1,15 @@
+import Header from './Header';
+import Footer from './Footer';
+import { LangProvider } from '../context/LangContext';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <LangProvider>
+      <div className="flex flex-col min-h-screen" id="home">
+        <Header />
+        <main className="flex-1 pt-16">{children}</main>
+        <Footer />
+      </div>
+    </LangProvider>
+  );
+}
