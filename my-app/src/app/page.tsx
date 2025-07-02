@@ -101,7 +101,7 @@ export default function HomePage() {
       );
       setSent(true);
       form.reset();
-    } catch (err) {
+    } catch {
       setError('Erro ao enviar. Tente novamente.');
     } finally {
       setSending(false);

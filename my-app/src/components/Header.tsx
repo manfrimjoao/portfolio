@@ -9,7 +9,7 @@ import { text } from '../lib/text';
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const { lang, setLang, isLangTransitioning, triggerLangTransition } = useLang();
+  const { lang, setLang, triggerLangTransition } = useLang();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
