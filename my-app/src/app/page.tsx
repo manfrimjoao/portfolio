@@ -16,6 +16,7 @@ import {
 } from 'react-icons/si';
 import { useLang } from '../context/LangContext';
 import { text } from '../lib/text';
+import DownloadCVButton from '../components/DownloadCVButton';
 
 export default function HomePage() {
   const { lang } = useLang();
@@ -77,12 +78,17 @@ export default function HomePage() {
           className="text-center md:text-left"
         >
           <h1 className="text-4xl font-bold mb-4">{t.hero}</h1>
-          <button
-            onClick={scrollToProjects}
-            className="bg-primary text-primary-foreground px-4 py-2 rounded mt-4"
-          >
-            {t.viewProjects}
-          </button>
+          <div className="flex gap-2 justify-center md:justify-start">
+            <button
+              onClick={scrollToProjects}
+              className="bg-primary text-primary-foreground px-4 py-2 rounded mt-4"
+            >
+              {t.viewProjects}
+            </button>
+            <div className="mt-4">
+              <DownloadCVButton />
+            </div>
+          </div>
         </motion.div>
         <Image
           src="/profile.jpg"
