@@ -14,8 +14,13 @@ import {
   SiFramer,
 } from 'react-icons/si';
 import type { IconType } from 'react-icons';
+import { useLang } from '../context/LangContext';
+import { text } from '../lib/text';
 
 export default function HomePage() {
+  const { lang } = useLang();
+  const t = text[lang];
+
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -71,14 +76,12 @@ export default function HomePage() {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-4xl font-bold mb-4">
-            Hi, I&apos;m João, a React & Node.js enthusiast
-          </h1>
+          <h1 className="text-4xl font-bold mb-4">{t.hero}</h1>
           <button
             onClick={scrollToProjects}
             className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded mt-4"
           >
-            View Projects
+            {t.viewProjects}
           </button>
         </motion.div>
         <Image
@@ -98,18 +101,17 @@ export default function HomePage() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
-        <h2 className="text-3xl font-bold mb-4">About Me</h2>
+        <h2 className="text-3xl font-bold mb-4">{t.aboutMe}</h2>
         <p className="mb-4">
-          I&apos;m passionate about building full-stack applications using React and
-          Node.js. Always learning and looking for new challenges.
+          I&apos;m passionate about building full-stack applications using React and Node.js. Always learning and looking for new challenges.
         </p>
-        <h3 className="font-semibold mb-2">Soft Skills</h3>
+        <h3 className="font-semibold mb-2">{t.softSkills}</h3>
         <ul className="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
           <li>Teamwork</li>
           <li>Communication</li>
           <li>Problem Solving</li>
         </ul>
-        <h3 className="font-semibold mb-2">Technologies</h3>
+        <h3 className="font-semibold mb-2">{t.technologies}</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
           {aboutTechs.map((t) => (
             <div key={t.name} className="flex items-center gap-2">
@@ -128,7 +130,7 @@ export default function HomePage() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
-        <h2 className="text-3xl font-bold mb-8">Projects</h2>
+        <h2 className="text-3xl font-bold mb-8">{t.projectsTitle}</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {projects.map((p) => (
             <motion.div
@@ -167,7 +169,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaGithub className="w-4 h-4" /> View on GitHub
+                <FaGithub className="w-4 h-4" /> {t.viewOnGitHub}
               </a>
             </motion.div>
           ))}
@@ -182,31 +184,31 @@ export default function HomePage() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto py-20 px-4"
       >
-        <h2 className="text-3xl font-bold mb-4">Contact</h2>
+        <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
         <form className="grid gap-4 max-w-xl">
           <input
             className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
             type="text"
-            placeholder="Name"
-            aria-label="Name"
+            placeholder={t.name}
+            aria-label={t.name}
           />
           <input
             className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
             type="email"
-            placeholder="Email"
-            aria-label="Email"
+            placeholder={t.email}
+            aria-label={t.email}
           />
           <textarea
             className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
             rows={4}
-            placeholder="Message"
-            aria-label="Message"
+            placeholder={t.message}
+            aria-label={t.message}
           ></textarea>
           <button
             type="submit"
             className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded"
           >
-            Send
+            {t.send}
           </button>
         </form>
         <div className="mt-6 flex gap-4">
@@ -214,7 +216,7 @@ export default function HomePage() {
             href="mailto:jvmanfrim88@gmail.com"
             className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
           >
-            <FaEnvelope className="w-4 h-4" /> Email Me
+            <FaEnvelope className="w-4 h-4" /> {t.emailMe}
           </a>
           <a
             href="https://linkedin.com/in/manfrimjoao"

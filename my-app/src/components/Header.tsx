@@ -2,10 +2,13 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang } from '../context/LangContext';
+import { text } from '../lib/text';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -22,11 +25,11 @@ export default function Header() {
     localStorage.setItem('theme', next ? 'dark' : 'light');
   };
   const links = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-  ];
+    { href: '#home', key: 'home' },
+    { href: '#about', key: 'about' },
+    { href: '#projects', key: 'projects' },
+    { href: '#contact', key: 'contact' },
+  ] as const;
   return (
     <header className="fixed w-full top-0 left-0 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-200 dark:border-gray-700 z-10 shadow-sm">
       <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
@@ -36,17 +39,26 @@ export default function Header() {
         <nav className="hidden md:flex gap-4">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-primary dark:hover:text-primary-dark">
-              {l.label}
+              {text[lang][l.key]}
             </a>
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <button
+          <motion.button
             onClick={toggleDark}
             aria-label="Toggle theme"
             className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+            animate={{ rotate: dark ? 180 : 0 }}
+            transition={{ duration: 0.4 }}
           >
             {dark ? '🌙' : '☀️'}
+          </motion.button>
+          <button
+            onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
+            aria-label="Toggle language"
+            className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-xs font-semibold"
+          >
+            {lang === 'en' ? 'PT' : 'EN'}
           </button>
           <button
             className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -71,7 +83,7 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                {l.label}
+                {text[lang][l.key]}
               </a>
             ))}
           </motion.nav>
