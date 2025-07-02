@@ -1,19 +1,19 @@
 'use client';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import type { IconType } from 'react-icons';
 import {
+  FaEnvelope,
   FaGithub,
   FaLinkedin,
-  FaEnvelope,
 } from 'react-icons/fa';
 import {
-  SiReact,
-  SiNodedotjs,
-  SiTypescript,
-  SiNextdotjs,
   SiFramer,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+  SiTypescript,
 } from 'react-icons/si';
-import type { IconType } from 'react-icons';
 import { useLang } from '../context/LangContext';
 import { text } from '../lib/text';
 
@@ -85,7 +85,7 @@ export default function HomePage() {
           </button>
         </motion.div>
         <Image
-          src="/profile.png"
+          src="/profile.jpg"
           alt="João Manfrim"
           width={300}
           height={300}
