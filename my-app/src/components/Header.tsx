@@ -66,7 +66,8 @@ export default function Header() {
           <button
             onClick={() => {
               triggerLangTransition();
-              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 200);
+              // Change the language when the animation is halfway through
+              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 300);
             }}
             aria-label="Toggle language"
             className="p-2 rounded hover:bg-surface text-xs font-semibold"

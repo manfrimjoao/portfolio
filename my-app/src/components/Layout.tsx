@@ -14,12 +14,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {isLangTransitioning && (
               <motion.div
                 key="lang-transition"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="fixed inset-0 z-50 bg-foreground"
-                style={{ mixBlendMode: 'difference' }}
+                initial={{ y: '-100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: '100%' }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                className="fixed inset-0 z-50 pointer-events-none"
+                style={{
+                  background:
+                    'linear-gradient(120deg, var(--color2), var(--color3))',
+                }}
               />
             )}
           </AnimatePresence>

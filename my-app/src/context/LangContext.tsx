@@ -35,7 +35,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const triggerLangTransition = () => {
     setIsLangTransitioning(true);
-    setTimeout(() => setIsLangTransitioning(false), 400);
+    // Allow a slightly longer transition for a clearer effect
+    setTimeout(() => setIsLangTransitioning(false), 600);
   };
 
   return (
