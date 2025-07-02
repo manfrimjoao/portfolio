@@ -9,10 +9,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#4f46e5',
-          dark: '#6366f1',
-        },
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        header: 'var(--header-bg)',
+        footer: 'var(--footer-bg)',
+        surface: 'var(--card-bg)',
+        primary: 'var(--button-bg)',
+        'primary-foreground': 'var(--button-text)',
+        border: 'var(--border)',
       },
     },
   },

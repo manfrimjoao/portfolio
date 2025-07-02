@@ -79,7 +79,7 @@ export default function HomePage() {
           <h1 className="text-4xl font-bold mb-4">{t.hero}</h1>
           <button
             onClick={scrollToProjects}
-            className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded mt-4"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded mt-4"
           >
             {t.viewProjects}
           </button>
@@ -113,7 +113,7 @@ export default function HomePage() {
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
           {aboutTechs.map((t) => (
             <div key={t.name} className="flex items-center gap-2">
-              <t.icon className="w-5 h-5 text-primary dark:text-primary-dark" />
+              <t.icon className="w-5 h-5 text-primary" />
               <span className="text-sm">{t.name}</span>
             </div>
           ))}
@@ -137,7 +137,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 p-4 rounded shadow flex flex-col"
+              className="bg-surface p-4 rounded shadow flex flex-col"
             >
               <Image
                 src={p.img}
@@ -154,7 +154,7 @@ export default function HomePage() {
                   return (
                     <span
                       key={b}
-                      className="bg-gray-200 dark:bg-gray-700 px-2 py-1 text-xs rounded flex items-center gap-1"
+                      className="bg-header px-2 py-1 text-xs rounded flex items-center gap-1"
                     >
                       {Icon && <Icon className="w-4 h-4" />} {b}
                     </span>
@@ -163,7 +163,7 @@ export default function HomePage() {
               </div>
               <a
                 href={p.link}
-                className="text-primary dark:text-primary-dark text-sm hover:underline flex items-center gap-1"
+                className="text-primary text-sm hover:underline flex items-center gap-1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -185,26 +185,26 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
         <form className="grid gap-4 max-w-xl">
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-border bg-surface p-2 rounded text-foreground"
             type="text"
             placeholder={t.name}
             aria-label={t.name}
           />
           <input
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-border bg-surface p-2 rounded text-foreground"
             type="email"
             placeholder={t.email}
             aria-label={t.email}
           />
           <textarea
-            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 rounded text-gray-900 dark:text-gray-100"
+            className="border border-border bg-surface p-2 rounded text-foreground"
             rows={4}
             placeholder={t.message}
             aria-label={t.message}
           ></textarea>
           <button
             type="submit"
-            className="bg-primary dark:bg-primary-dark text-white px-4 py-2 rounded"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded"
           >
             {t.send}
           </button>
@@ -212,13 +212,13 @@ export default function HomePage() {
         <div className="mt-6 flex gap-4">
           <a
             href="mailto:jvmanfrim88@gmail.com"
-            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
+            className="text-primary hover:underline flex items-center gap-1"
           >
             <FaEnvelope className="w-4 h-4" /> {t.emailMe}
           </a>
           <a
             href="https://linkedin.com/in/manfrimjoao"
-            className="text-primary dark:text-primary-dark hover:underline flex items-center gap-1"
+            className="text-primary hover:underline flex items-center gap-1"
           >
             <FaLinkedin className="w-4 h-4" /> LinkedIn
           </a>
