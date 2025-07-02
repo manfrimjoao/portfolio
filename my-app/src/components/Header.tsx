@@ -44,15 +44,13 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <motion.button
+          <button
             onClick={toggleDark}
             aria-label="Toggle theme"
             className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
-            animate={{ rotate: dark ? 180 : 0 }}
-            transition={{ duration: 0.4 }}
           >
             {dark ? '🌙' : '☀️'}
-          </motion.button>
+          </button>
           <button
             onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
             aria-label="Toggle language"

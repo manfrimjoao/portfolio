@@ -17,6 +17,17 @@ export const text = {
     message: 'Message',
     emailMe: 'Email Me',
     viewOnGitHub: 'View on GitHub',
+    aboutParagraph:
+      "I'm passionate about building full-stack applications using React and Node.js. Always learning and looking for new challenges.",
+    teamwork: 'Teamwork',
+    communication: 'Communication',
+    problemSolving: 'Problem Solving',
+    project1Title: 'Sample Project 1',
+    project1Desc: 'Brief description of the project.',
+    project2Title: 'Sample Project 2',
+    project2Desc: 'Another cool project example.',
+    project3Title: 'Sample Project 3',
+    project3Desc: 'Interesting project showcase.',
   },
   pt: {
     home: 'Início',
@@ -36,6 +47,17 @@ export const text = {
     message: 'Mensagem',
     emailMe: 'Enviar Email',
     viewOnGitHub: 'Ver no GitHub',
+    aboutParagraph:
+      'Sou apaixonado por construir aplicações full-stack com React e Node.js. Sempre aprendendo e buscando novos desafios.',
+    teamwork: 'Trabalho em Equipe',
+    communication: 'Comunicação',
+    problemSolving: 'Resolução de Problemas',
+    project1Title: 'Projeto Exemplo 1',
+    project1Desc: 'Breve descrição do projeto.',
+    project2Title: 'Projeto Exemplo 2',
+    project2Desc: 'Outro exemplo de projeto interessante.',
+    project3Title: 'Projeto Exemplo 3',
+    project3Desc: 'Demonstração de projeto interessante.',
   },
 };
 export type TextKey = keyof typeof text.en;

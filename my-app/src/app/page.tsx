@@ -27,22 +27,22 @@ export default function HomePage() {
 
   const projects = [
     {
-      title: 'Sample Project 1',
-      desc: 'Brief description of the project.',
+      title: t.project1Title,
+      desc: t.project1Desc,
       img: '/next.svg',
       link: 'https://github.com/manfrimjoao',
       badges: ['React', 'Node'],
     },
     {
-      title: 'Sample Project 2',
-      desc: 'Another cool project example.',
+      title: t.project2Title,
+      desc: t.project2Desc,
       img: '/vercel.svg',
       link: 'https://github.com/manfrimjoao',
       badges: ['React', 'TypeScript'],
     },
     {
-      title: 'Sample Project 3',
-      desc: 'Interesting project showcase.',
+      title: t.project3Title,
+      desc: t.project3Desc,
       img: '/next.svg',
       link: 'https://github.com/manfrimjoao',
       badges: ['Next.js', 'Framer'],
@@ -102,14 +102,12 @@ export default function HomePage() {
         className="max-w-5xl mx-auto py-20 px-4"
       >
         <h2 className="text-3xl font-bold mb-4">{t.aboutMe}</h2>
-        <p className="mb-4">
-          I&apos;m passionate about building full-stack applications using React and Node.js. Always learning and looking for new challenges.
-        </p>
+        <p className="mb-4">{t.aboutParagraph}</p>
         <h3 className="font-semibold mb-2">{t.softSkills}</h3>
         <ul className="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
-          <li>Teamwork</li>
-          <li>Communication</li>
-          <li>Problem Solving</li>
+          <li>{t.teamwork}</li>
+          <li>{t.communication}</li>
+          <li>{t.problemSolving}</li>
         </ul>
         <h3 className="font-semibold mb-2">{t.technologies}</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">

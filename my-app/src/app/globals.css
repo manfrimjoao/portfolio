@@ -3,6 +3,7 @@
 :root {
   --background: #f9fafb; /* gray-50 */
   --foreground: #111827; /* gray-900 */
+  --transition: 0.3s ease;
 }
 
 .dark {
@@ -14,4 +15,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background var(--transition), color var(--transition);
+}
+
+* {
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
 }
