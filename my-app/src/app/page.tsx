@@ -117,7 +117,7 @@ export default function HomePage() {
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="text-center md:text-left"
         >
           <h1 className="text-4xl font-bold mb-4 relative">
@@ -154,7 +154,7 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
         >
           <Image
             src="/profile.jpg"
@@ -217,11 +217,10 @@ export default function HomePage() {
           {projects.map((p) => (
             <motion.div
               key={p.title}
-              whileHover={{ scale: 1.05, boxShadow: '0px 10px 30px rgba(0,0,0,0.1)' }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-surface p-4 rounded shadow flex flex-col border border-border"
+              className="bg-surface p-4 rounded shadow flex flex-col border border-border transform transition-transform hover:scale-105 hover:shadow-lg"
             >
               <Image
                 src={p.img}

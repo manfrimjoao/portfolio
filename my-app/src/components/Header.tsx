@@ -1,5 +1,4 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -93,27 +92,22 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            initial={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            exit={{ height: 0 }}
-            className="md:hidden bg-header border-t border-border"
-          >
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={handleNavClick(l.href)}
-                className="block px-4 py-2 hover:bg-surface"
-              >
-                {text[lang][l.key]}
-              </a>
-            ))}
-          </motion.nav>
-        )}
-      </AnimatePresence>
+      <nav
+        className="md:hidden bg-header border-t border-border overflow-hidden transition-[max-height] duration-300"
+        style={{ maxHeight: open ? '200px' : '0px' }}
+      >
+        {open &&
+          links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={handleNavClick(l.href)}
+              className="block px-4 py-2 hover:bg-surface"
+            >
+              {text[lang][l.key]}
+            </a>
+          ))}
+      </nav>
     </header>
   );
 }

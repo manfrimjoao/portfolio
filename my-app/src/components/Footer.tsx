@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'framer-motion';
 import { FaGithub, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
@@ -12,15 +11,14 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-2">
         <div className="flex gap-4">
           {socials.map((s) => (
-            <motion.a
+            <a
               key={s.href}
-              whileHover={{ scale: 1.1 }}
               href={s.href}
-              className="text-primary"
+              className="text-primary transition-transform hover:scale-110"
             >
               <s.icon className="w-5 h-5" />
               <span className="sr-only">{s.label}</span>
-            </motion.a>
+            </a>
           ))}
         </div>
         <p className="text-xs text-foreground">&copy; {new Date().getFullYear()} João Vitor Fernandes Manfrim</p>
