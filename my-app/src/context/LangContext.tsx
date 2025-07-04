@@ -6,20 +6,15 @@ export type Lang = 'en' | 'pt';
 interface LangContextValue {
   lang: Lang;
   setLang: (l: Lang) => void;
-  isLangTransitioning: boolean;
-  triggerLangTransition: () => void;
 }
 
 const LangContext = createContext<LangContextValue>({
   lang: 'en',
   setLang: () => {},
-  isLangTransitioning: false,
-  triggerLangTransition: () => {},
 });
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>('en');
-  const [isLangTransitioning, setIsLangTransitioning] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('lang');
@@ -33,14 +28,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('lang', l);
   };
 
-  const triggerLangTransition = () => {
-    setIsLangTransitioning(true);
-    // Allow a slightly longer transition for a clearer effect
-    setTimeout(() => setIsLangTransitioning(false), 600);
-  };
-
   return (
-    <LangContext.Provider value={{ lang, setLang, isLangTransitioning, triggerLangTransition }}>
+    <LangContext.Provider value={{ lang, setLang }}>
       {children}
     </LangContext.Provider>
   );
