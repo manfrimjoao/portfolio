@@ -161,7 +161,7 @@ export default function HomePage() {
             alt="João Manfrim"
             width={300}
             height={300}
-            className="rounded-full w-40 h-40 md:w-60 md:h-60 object-cover mx-auto"
+            className="rounded-full w-48 h-48 object-cover mx-auto"
           />
         </motion.div>
       </section>
