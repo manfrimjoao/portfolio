@@ -9,7 +9,7 @@ import { text } from '../lib/text';
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const { lang, setLang, triggerLangTransition } = useLang();
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -75,18 +75,14 @@ export default function Header() {
             </span>
           </button>
           <button
-            onClick={() => {
-              triggerLangTransition();
-              // Change the language when the animation is halfway through
-              setTimeout(() => setLang(lang === 'en' ? 'pt' : 'en'), 300);
-            }}
+            onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
             aria-label="Toggle language"
             className="p-2 rounded hover:bg-surface text-xs font-semibold"
           >
             {lang === 'en' ? 'EN' : 'PT-BR'}
           </button>
           <button
-            className="md:hidden bg-header rounded p-2 z-20 border border-border" onClick={() => setOpen(!open)} aria-label="Menu">
+            className="md:hidden bg-header rounded p-2 z-20 border border-border focus:outline-none" onClick={() => setOpen(!open)} aria-label="Menu">
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground"></span>
@@ -99,7 +95,7 @@ export default function Header() {
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
             exit={{ height: 0 }}
-            className="md:hidden bg-header border-t border-border"
+            className="md:hidden bg-header border-t border-border w-full"
           >
             {links.map((l) => (
               <a
