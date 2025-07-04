@@ -120,7 +120,7 @@ export default function HomePage() {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-4xl font-bold mb-4 relative">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative">
             <span className="opacity-0 pointer-events-none absolute inset-0 select-none whitespace-nowrap">
               {text.pt.hero.length > text.en.hero.length ? text.pt.hero : text.en.hero}
             </span>
@@ -161,7 +161,7 @@ export default function HomePage() {
             alt="João Manfrim"
             width={300}
             height={300}
-            className="rounded-full"
+            className="rounded-full w-40 h-40 md:w-60 md:h-60 object-cover mx-auto"
           />
         </motion.div>
       </section>
@@ -302,8 +302,6 @@ export default function HomePage() {
           {sent && <p className="text-green-600 text-sm mt-2">Mensagem enviada com sucesso!</p>}
           {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
         </form>
-        <div className="mt-6 flex gap-4">
-        </div>
       </motion.section>
     </div>
   );

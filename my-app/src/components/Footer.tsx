@@ -9,8 +9,8 @@ export default function Footer() {
   ];
   return (
     <footer className="bg-footer border-t border-border py-6 mt-16">
-      <div className="max-w-5xl mx-auto flex flex-col items-center gap-2">
-        <div className="flex gap-4">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 px-4 text-center">
+        <div className="flex gap-4 justify-center">
           {socials.map((s) => (
             <motion.a
               key={s.href}

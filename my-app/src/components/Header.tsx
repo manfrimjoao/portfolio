@@ -82,7 +82,7 @@ export default function Header() {
             {lang === 'en' ? 'EN' : 'PT-BR'}
           </button>
           <button
-            className="md:hidden bg-header rounded p-2 z-20 border border-border" onClick={() => setOpen(!open)} aria-label="Menu">
+            className="md:hidden bg-header rounded p-2 z-20 border border-border focus:outline-none" onClick={() => setOpen(!open)} aria-label="Menu">
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
             <span className="block w-6 h-0.5 bg-foreground"></span>
@@ -95,7 +95,7 @@ export default function Header() {
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
             exit={{ height: 0 }}
-            className="md:hidden bg-header border-t border-border"
+            className="md:hidden bg-header border-t border-border w-full"
           >
             {links.map((l) => (
               <a
